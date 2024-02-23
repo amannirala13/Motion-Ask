@@ -4,8 +4,29 @@ import { BiSearch } from "react-icons/bi";
 import {FiUpload} from "react-icons/fi";
 import {useNavigate} from "react-router";
 import {RouterPaths} from "../../router";
+import { collection, getDocs } from "firebase/firestore";
+import {Firestore} from "../../firebase";
+import {useEffect, useState} from "react";
 
 export function DashboardPage(){
+
+    const [videosList, setVideosList] = useState([])
+
+    useEffect(() => {
+        getDocs(collection(Firestore, "videos"))
+            .then(docs=>{
+                let list = []
+                docs.forEach((doc)=>{
+                    let d = doc.data()
+                    d.id = doc.id
+                    list.push(d)
+                })
+                setVideosList(list)
+            })
+            .catch(e=>{
+                console.error(e)
+            })
+    }, []);
 
     const nav = useNavigate()
     return(
@@ -23,10 +44,12 @@ export function DashboardPage(){
                     </div>
                 </div>
             </div>
-            <div className={`w-full grid grid-cols-2 gap-4 h-full p-4 mt-8`}>
-                <ContentCard/>
-                <ContentCard/>
-                <ContentCard/>
+            <div className={`w-full grid grid-cols-1 gap-4 h-full p-4 mt-8`}>
+                {
+                   videosList.map((video, index)=>{
+                       return <ContentCard data={video}/>
+                   })
+                }
             </div>
         </div>
     )

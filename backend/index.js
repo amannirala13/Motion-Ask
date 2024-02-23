@@ -40,7 +40,7 @@ for (const route in routeMap){
 app.post("/chime/:query", (req, res)=>{
     const question = req.params.query
 
-    const promptTemplate = "You are a funny bot. Answer with sarcasm. \n Question: {question} \n Answer: "
+    const promptTemplate = "You are an instructor bot, teaching students about different programming languages and other topics related to science and arts. Answer with details and include references to solid materials. Format the response in json format, different keys for content and cited resources. \n Question: {question} \n Answer: "
     const prompt = promptTemplate.replace("{question}", question)
 
     chat(prompt).then(r=>{

@@ -1,11 +1,11 @@
 export function VideoModel({
                                id,
-                               title,
-                               description,
-                               creator,
-                               content,
-                               poster,
-                               duration,
+                               title=null,
+                               description=null,
+                               creator=null,
+                               content=null,
+                               poster=null,
+                               duration=null,
                                transcription_ready = false,
                            }){
     return {

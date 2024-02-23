@@ -1,12 +1,14 @@
 import {HomePage} from "../pages/homepage";
 import {DashboardPage} from "../pages/dashboard/dashboardpage";
 import {UploadPage} from "../pages/dashboard/uploadpage";
+import {CoursePage} from "../pages/course/coursePage";
 
 export const RouterPaths = {
     home: "home",
     login: "login",
     dashboard: "dashboard",
-    uploadVideo: "upload-video"
+    uploadVideo: "upload-video",
+    course: "course",
 }
 
 export const PathMaps = [
@@ -19,4 +21,5 @@ export const DashboardPathMaps = [
     {path: `/`, element: <DashboardPage/>},
     {path: `/${RouterPaths.dashboard}/`, element: <DashboardPage/>},
     {path: `/${RouterPaths.uploadVideo}`, element: <UploadPage/>},
+    {path: `/${RouterPaths.course}/:id`, element: <CoursePage/>},
 ]

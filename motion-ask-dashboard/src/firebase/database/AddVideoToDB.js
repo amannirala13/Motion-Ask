@@ -1,10 +1,11 @@
 
-import { collection, addDoc } from "firebase/firestore";
+import { collection, setDoc, doc } from "firebase/firestore";
 import {Firestore} from "../Firestore";
 
 export function AddVideoToDB(data){
     return new Promise((resolve, reject)=>{
-        addDoc(collection(Firestore,"videos"), data)
+        const docRef = doc(Firestore, "videos", data.id)
+        setDoc(docRef, data)
             .then(doc=>{
                 resolve(doc)
             })
